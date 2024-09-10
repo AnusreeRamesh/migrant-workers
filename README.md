@@ -1,5 +1,5 @@
 create virtual environment  
 install requirements  
-make migrations
-migrate
+make migrations  
+migrate  
 runserver
