@@ -1,0 +1,21 @@
+
+	{% extends "base.html" %}
+	
+	{% block content %}
+
+	<center>
+  <h3>Login </h3><br>
+	<div class="container">
+		<form class="form-signin col-6" action="{%url 'login1'%}" method="post">
+			{%csrf_token%}
+
+			<label for="username" class="sr-only">User Name</label>
+			<input class="form-control" type="text" name="username"  required autofocus>
+			<label for="password" class="sr-only">Password</label>
+			<input type="password" name="password" class="form-control"  required>
+<br>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		</form>
+	</div>
+</center>
+{% endblock %}

@@ -1,0 +1,20 @@
+  {% extends "base.html" %}
+
+  {% block content %}
+
+ {% load crispy_forms_tags %} 
+<br><br>
+<center>
+  <h3>User Registration</h3><br>
+
+
+<form class="col-md-4"  id="contactform" action="{%url 'user_registration'%}" enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+
+    {{form| crispy}}
+ <button class="btn btn-primary" type="submit">Register</button>
+</form>
+
+</center>
+<br><br><br><br><br><br><br>
+{% endblock %}
