@@ -1,0 +1,78 @@
+{% extends 'authority_base.html'%} 
+{% block content %}
+
+<div class="container-fluid" style="text-align:right;">
+<a class="btn btn-info" href="{% url 'authority_base' %}" > Authority Dashboard </a>
+</div>
+
+<center><h5>List of Workers</h5></center>
+
+<div class="container">
+  <div class="col-md-13">
+    <form class="form-horizontal" role="search" method="get" action=''>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group">
+            <input type="text" class="form-control input-lg" style="border-radius: 5px;"
+            name="q" value="{{ request.GET.q }}" placeholder= "Search Worker"/> 
+            
+            <span class='input-group-btn'>
+              <button type="submit" style="border-radius: 5px;background-color:#6C3483;border-color:black;" class="btn btn-primary">Search</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+<section class="content">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card card-primry  sc">
+                <div class="card card-primar sc">
+                    <table class="table table-bordered table-hover dataTable">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>UserName</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>District</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in workers %}
+                            <tr class="hov">
+                                <td>{{item.id}}</td>
+                                <td>{{item.username}}</td>
+                                <td>{{item.first_name}}</td>
+                                <td>{{item.last_name}}</td>
+                                <td>{{item.district}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.mobile}}</td>
+                                
+
+                                <td><a href="{% url 'view_full_data' item.username %}" class="btn btn-sm btn-warning">View Full Data</a> 
+
+{% if item.status == 'Approved' %}
+        <a href="{% url 'view-card' item.id %}" class="btn btn-sm btn-info">View Id Card</a></td>
+{% endif %}
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+</section>
+
+{% endblock content %}

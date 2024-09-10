@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Migrant Workers ID System</title>
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+
+
+
+</head>
+<body style="background-repeat:no-repeat;background-size:cover;background-image: url('{% static "images/img2.jpg" %}');" >
+
+
+<nav class="navbar navbar-expand-lg text-light" style="background-repeat:no-repeat;background-size:cover;background-image: url('{% static "images/bg3.jpg" %}');">
+<!-- <nav class="navbar navbar-expand-lg text-light" style="background-color:black"> -->
+  <div class="container-fluid">
+<img class="rounded" src="{% static 'images/logo2.jpg'%}" width="230">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto ">
+        <li class="nav-item">
+          <a class="nav-link active text-light " aria-current="page" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active text-light " aria-current="page" href="{% url 'about' %}">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active text-light" aria-current="page" href="{% url 'contact' %}">Contact Us</a>
+        </li>
+
+
+
+{% if user.is_authenticated %}
+         <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'logout1' %}"> Logout</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link text-light" href="">{{ user.username}} !</a>
+        </li>
+
+{% else %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sign Up
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{% url 'authority_registration' %}">Authority</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'user_registration' %}">User</a></li>
+          </ul>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link text-light" href="{% url 'login1' %}">Login</a>
+        </li>
+{% endif %}
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% block content %}
+
+
+<div class="container-fluid">
+<br><br>
+<div class="row">
+<div class="col">
+<p class="text-justify">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A unique identifier (UID) is a numeric or alphanumeric string that is associated with a single entity within a given system. UIDs make it possible to address that entity, so that it can be accessed and interacted with.
+
+Unique identifiers can be assigned to anything that needs to be distinguished from other entities, such as individual users, companies, machines or websites. These distinctive values are usually assigned depending on the needs of the specific application, but can either be randomly auto-generated with an algorithm, allocated incrementally or chosen by the user.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The most widely known use of unique identifiers occurs when users register for a website or service. Customers are often provided with a username or user ID that allows the company they are registering with to differentiate them within their user logs. These identifiers are then also used for security and log on purposes.
+
+In a database or spreadsheet, unique identifiers may be designated as a specific column or field to help make sorting and filtering through information easier. This also helps trace information back to a specific user or entity within the system.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Another popular application of UIDs is in a physical supply chain. Manufacturers often mark individual pieces of a larger component, such as computer parts, or an entire product with a serial number. This allows users to trace back the origin of the product in case of a malfunction, defect or recall.
+<br><br><br><br><br><br>
+
+
+</p>
+</div>
+<div class="col">  
+  <br>  <br>  
+<img src="{% static 'images/img11.jpg'%}" class="rounded">
+
+</div>
+</div>
+</div>
+
+{% endblock content %}
+
+<style>
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height:70px;
+  background-image: url('{% static "images/bg3.jpg" %}');
+  color: white;
+  text-align: center;
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+</style>
+
+<div class="footer">
+  <p><h6>Migrant Workers Unique Id System</h6>
+    <h6>CopyRight&#169;2023</h6></p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+{{post.title}}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid" style="text-align:right;">
+<a class="btn btn-info" href="{% url 'authority_base' %}" > Authority Dashboard </a>
+</div>
+
+<center>
+<h3>Authority Details</h3><br>
+<div class="card-body col-6">
+<div class="table-responsive">
+<table class="table">
+
+<tr><td>Username</td><td>{{ authority.username }}</td></tr>
+<tr><td>Email</td><td>{{ authority.email }}</td></tr>
+<tr><td>Mobile No</td><td>{{ authority.mobile }}</td></tr>
+<tr><td>Password</td><td>{{ authority.password }}</td></tr>
+
+</table>
+</div>
+</div>
+</center>
+
+ 
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+{{post.title}}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid" style="text-align:right;">
+<a class="btn btn-info" href="{% url 'user_base' %}" > User Dashboard </a>
+</div>
+
+<center>
+<h3>User Details</h3><br>
+<div class="card-body col-6">
+<div class="table-responsive">
+<table class="table">
+
+<tr><td>Username</td><td>{{ users.username }}</td></tr>
+<tr><td>Email</td><td>{{ users.email }}</td></tr>
+<tr><td>Mobile No</td><td>{{ users.mobile }}</td></tr>
+<tr><td>District</td><td>{{ users.district }}</td></tr>
+<tr><td>Password</td><td>{{ users.password }}</td></tr>
+
+</table>
+</div>
+</div>
+</center>
+
+ 
+{% endblock %}

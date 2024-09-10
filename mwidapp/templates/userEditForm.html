@@ -1,0 +1,51 @@
+  
+{% extends "base.html" %}
+
+{% block content %} 
+
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+
+<div class="container-fluid" style="text-align:right;">
+<a class="btn btn-info" href="{% url 'user_base' %}" > User Dashboard </a>
+</div>
+
+<center><h3> Apply for Unique Id Card</h3></center>
+<div class="center-column">
+ <div class="item-row">
+   {% load crispy_forms_tags %} 
+<center>
+ <form method="POST" action="" class="col-md-4" enctype="multipart/form-data">
+ {% csrf_token %} 
+
+ {{form | crispy}}
+
+{% if wks.first_name == '' or wks.last_name == "" or wks.address == "" or wks.photo == ""  or wks.identification_mark == "" or wks.blood_group == "" or wks.uid_aadhar_driv == "" %}
+
+<input class="btn btn-info" type="submit" name="Submit_Button" value="Edit Details" />
+<input class="btn btn-info" disabled name="Submit_Button" value="APPLY for ID Card" />
+
+{% elif wks.mwuid == '' %}
+
+<input class="btn btn-info" type="submit" name="Submit_Button" value="Edit Details" />
+ <a href="{% url 'submit_application' %}"><input class="btn btn-info" name="Submit_Button" value="APPLY for ID Card" />
+
+{% elif wks.mwuid != ''  %}
+ <input class="btn btn-info" disabled type="submit" name="Update Task" value="Already Applied" />
+ <br>Your mwuid status is,<br>
+ Status : <b>{{wks.status}}</b><br>
+ MWUID Number : <b>{{wks.mwuid}}</b><br>
+
+{% endif %}
+
+ </form>
+</center>
+ </div>
+</div>
+
+<br><br><br>
+
+{% endblock %}

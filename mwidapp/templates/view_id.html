@@ -1,0 +1,125 @@
+  {% extends "base.html" %}
+{% load qr_code %}
+
+  {% block content %}
+
+<style>
+    #uni_modal .modal-footer {
+        display: none
+    }
+    
+    #uni_modal .modal-sub-footer {
+        display: flex
+    }
+    
+    .id-card {
+        width: 3in;
+        height: 52vh;
+        border: 2px solid var(--bs-dark);
+        padding: 2rem 1.5rem;
+    }
+    
+    #card-qr,
+    #card-avatar {
+        width: 9rem;
+        height: 9rem;
+    }
+
+        * {
+        font-size: 12px;
+    }
+    * small {
+        font-size: 10px;
+    }
+    .id-card {
+        width: 2.11in;
+        height: 3.38in;
+        border: 2px solid var(--bs-dark);
+        padding: 2rem 1.5rem;
+        border-radius: 5px;
+    }
+    #card-avatar {
+        width: 1.3in;
+        height: 1.3in;
+    }
+    #card-qr {
+        width: .7in;
+        height: .7in;
+    }
+</style>
+
+
+
+
+
+<div class="container-fluid"><center>
+<h3>Migrant Workers Unique ID Card</h3>
+<br><br>
+</center>
+</div>
+
+
+
+
+<div class="container-fluid col-4">
+<div id="id-card">
+    <div class="d-flex mb-3">
+        <div class="px-2">
+
+
+
+
+            <div class="id-card">
+                <div class="lh-1 text-center">
+                    <h4><b>Migrant Workers ID Card</b></h4>
+                    <div class="text-center">MW ID No:&nbsp;{{emp.mwuid}}</div>
+                </div>
+                
+                <div class="head-text text-center fw-bolder"></div>
+                <div class="d-flex w-100 justify-content-center my-4">
+                    <img src="{{emp.photo.url}}" id="card-avatar" class="img-thumbnail" alt="">
+                </div>
+
+                <div class="lh-1">
+                    <div class="text-center fw-bold">{{ emp.first_name }} {{ emp.last_name }}</div>
+                    <div class="text-center  text-sm fw-bold">{% if emp.gender == '1' %} Male {% else %} Female {% endif %} </div>
+                    <div class="text-center text-sm fw-bold">{{ emp.email }}</div>
+                    <div class="text-center text-sm fw-bold">{{ emp.district }}</div>
+                </div>
+
+
+
+
+            </div>
+    </div>
+    <div class="px-2">
+        <div class="id-card">
+            <div class="lh-1">
+                <dl>
+                    <dt>Address</dt>
+                    <dd>{{emp.address}}</dd>
+                    <dt>Marital Status</dt>
+                    <dd>{% if emp.marital_status == '1' %} Single {% else %} Married {% endif %}</dd>
+                    <dt>Identification Mark</dt>
+                    <dd>{{emp.identification_mark}}</dd>
+                    <dt>Blood Group</dt>
+                    <dd>{{emp.blood_group}}</dd>
+                    <dt>AAdhar/Driving No</dt>
+                    <dd>{{emp.uid_aadhar_driv}}</dd>
+                    <dd>{% qr_from_text emp.mwuid size=10 border=6 %}</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+
+<div class="container-fluid"><center>
+<a class='btn btn-success' href="{% url 'download_card' emp.id %}" >Download ID Card</a> &nbsp; &nbsp;
+<a class='btn btn-success' href="{% url 'download_noc' emp.id %}" >Download NOC </a>
+<br><br>
+</center>
+</div>
+
+{% endblock content %}

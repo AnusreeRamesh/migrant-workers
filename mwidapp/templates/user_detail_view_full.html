@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}
+{{post.title}}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid" style="text-align:right;">
+<a class="btn btn-info" href="{% url 'authority_base' %}" > Authority Dashboard </a>
+</div>
+
+<center>
+<h3>User Details</h3><br>
+<div class="card-body col-6">
+<div class="table-responsive">
+<table class="table">
+
+<tr><td>MWUID Number</td><td>{{ users.mwuid}}</td></tr>
+<tr><td>Photo</td><td><img src="{{ users.photo.url }}" width=100 height=130></td></tr>
+<tr><td>First Name</td><td>{{ users.first_name }}</td></tr>
+<tr><td>Last Name</td><td>{{ users.last_name }}</td></tr>
+<tr><td>Username</td><td>{{ users.username }}</td></tr>
+
+<tr><td>Email</td><td>{{ users.email }}</td></tr>
+<tr><td>Mobile No</td><td>{{ users.mobile }}</td></tr>
+
+<tr><td>District</td><td>{{ users.district }}</td></tr>
+<tr><td>Gender</td><td>{% if users.gender == '1' %} Male {% else %} Female {% endif %}</td></tr>
+<tr><td>Address</td><td>{{ users.address }}</td></tr>
+<tr><td>Marital Status</td><td>{% if users.marital_status == '1' %} Single {% else %} Married {% endif %}</td></tr>
+<tr><td>Identification Mark</td><td>{{ users.identification_mark }}</td></tr>
+<tr><td>Blood Group</td><td>{{ users.blood_group }}</td></tr>
+<tr><td>Aadhar/Driving</td><td>{{ users.uid_aadhar_driv}}</td></tr>
+
+</table>
+</div>
+</div>
+
+<a href="{% url 'approve_user' users.username %}"><button class="btn btn-sm btn-success"> Approve </button></a>
+<a href="{% url 'reject_user' users.username %}"><button class="btn btn-sm btn-danger">Reject</button>
+</a>
+</center>
+<br><br><br><br><br>
+ 
+{% endblock %}
